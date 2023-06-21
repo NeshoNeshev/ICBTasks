@@ -2,21 +2,13 @@
 {
     static void Main()
     {
-        //var nums = new List<int>() { 1, 2, 3, -4 };
-        //var result = FirstTask.SumNumbersUsingRecursion(nums);
-        //Console.WriteLine(String.Join(",", result));
-
-        List<string> firstList = new List<string>() { "a","b","c" };
-        List<int> secondList = new List<int>() { 1, 2, 3 };
-
-        List<string> result = FirstTask.CombinesTwoLists(firstList, secondList);
-
-        Console.WriteLine(String.Join(",", result));
+       
     }
 
 }
 public static class FirstTask
 {
+
 
     public static int SumNumbersUsingLoop(List<int> numbers)
     {
@@ -55,22 +47,54 @@ public static class FirstTask
     }
     public static List<string> CombinesTwoLists(List<string> firstList, List<int> secondList)
     {
-        List<string> combinedList = new List<string>();
+        List<string> result = new List<string>();
         int maxLength = Math.Max(firstList.Count, secondList.Count);
 
         for (int i = 0; i < maxLength; i++)
         {
             if (i < firstList.Count)
             {
-                combinedList.Add(firstList[i]);
+                result.Add(firstList[i]);
             }
 
             if (i < secondList.Count)
             {
-                combinedList.Add(secondList[i].ToString());
+                result.Add(secondList[i].ToString());
             }
         }
 
-        return combinedList;
+        return result;
     }
+    public static List<ulong> ComputeFibonacciNumbers(int count)
+    {
+        List<ulong> fibonacciNumbers = new List<ulong>();
+
+        ulong a = 0;
+        ulong b = 1;
+
+        for (int i = 0; i < count; i++)
+        {
+            fibonacciNumbers.Add(a);
+
+            ulong temp = a;
+            a = b;
+            b = temp + b;
+        }
+
+        return fibonacciNumbers;
+    }
+    public static List<string> ArrangeLargestNumber(List<int> numbers)
+    {
+        List<string> arrangestNumbers = numbers.Select(n => n.ToString()).ToList();
+
+        arrangestNumbers.Sort((first, second) =>
+        {
+            string firstResult = first + second;
+            string secondResult = second + first;
+            return secondResult.CompareTo(firstResult);
+        });
+
+        return arrangestNumbers;
+    }
+    
 }
